@@ -24,6 +24,11 @@ private:
 public:
 	BigInt operator+(BigInt& value) { return add(value); }
 
+	friend std::ostream& operator<<(std::ostream& output, const BigInt& number) {
+		output << number.val;
+		return output;
+	}
+
 	// -------------------------- CONSTRUCTORS --------------------------
 
 	BigInt() {
