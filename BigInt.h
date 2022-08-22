@@ -4,7 +4,6 @@
 #include <iostream>
 #include <regex>
 
-typedef BigInt bigint;
 
 class BigNumberException: public std::exception {
 private:
@@ -27,15 +26,6 @@ public:
 	BigInt operator*(BigInt& value) { return multiply(value); }
 	BigInt operator/(BigInt& value) { return divide(value); }
 	BigInt operator%(BigInt& value) { return mod(value); }
-
-	BigInt operator++() {
-		BigInt ONE = BigInt::ONE();
-		return add(ONE); 
-	}
-	BigInt operator--() {
-		BigInt ONE = BigInt::ONE();
-		return substract(ONE);
-	}
 
 	friend std::ostream& operator<<(std::ostream& output, const BigInt& number) {
 		output << number.val;
@@ -85,7 +75,7 @@ public:
 			return  res.negate();
 		}
 
-		std::string A = this->stringval(), B = number.stringval(), sum;
+		std::string A = this->stringval(), B = number.stringval(), sum = "";
 
 		if (A.length() < B.length()) { 
 			switch_values(A, B);
@@ -94,7 +84,7 @@ public:
 		int subres = 0, tmp = 0, counter = 0;
 		std::size_t length_diff = A.length() - B.length();
 
-		for (std::size_t i = A.length() - 1; i >= 0; i--) {
+		for (int i = A.length() - 1; i >= 0; i--) {
 			int a = A[i] - '0';
 
 			if (counter <= B.length() - 1) {
@@ -107,7 +97,7 @@ public:
 			}
 
 			// reserve a bit
-			if (subres < 9 && i > 0) {
+			if (subres > 9 && i > 0) {
 				tmp = std::to_string(subres)[0] - '0';
 				subres = std::to_string(subres)[1] - '0';
 			}
@@ -117,6 +107,8 @@ public:
 			sum = std::to_string(subres) + sum;
 			counter++;
 		}
+
+		return BigInt(sum);
 
 	}
 
