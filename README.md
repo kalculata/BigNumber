@@ -1,0 +1,15 @@
+TODO:
+- [x] Implement add function
+- [ ] Implement substract function
+- [ ] Implement divide function
+- [ ] Implement multiply function
+- [ ] Implement pow function
+- [ ] Implement mod function
+- [ ] Implement powMod function
+- [ ] Compare numbers
+	- [ ] ==
+	- [ ] !=
+	- [ ] <
+	- [ ] >
+	- [ ] <=
+	- [ ] >=

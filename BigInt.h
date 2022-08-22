@@ -124,15 +124,15 @@ public:
 		return "-1";
 	}
 
+	BigInt pow(int exp) {
+		return "-1";
+	}
+	
 	BigInt mod(BigInt& mod) {
 		return "-1";
 	}
 
-	BigInt modPow(BigInt& exp, BigInt& mod) {
-		return "-1";
-	}
-
-	BigInt pow(int exp) {
+	BigInt powMod(BigInt& exp, BigInt& mod) {
 		return "-1";
 	}
 
@@ -153,6 +153,15 @@ public:
 
 	int length() { return val.length(); }
 
+	BigInt opposite() {
+		if (isNegative) {
+			return abs();
+		}
+		else {
+			return negate();
+		}
+	}
+
 	// -------------------------- GETTERS & SETTERS --------------------------
 	std::string stringval() { return val; }
 
@@ -161,6 +170,7 @@ public:
 	}
 
 	static BigInt ONE() { return BigInt(1); }
+
 	static BigInt ZERO() { return BigInt(0); }
 
 private:
