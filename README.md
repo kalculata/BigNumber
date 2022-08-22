@@ -13,3 +13,8 @@ TODO:
 	- [ ] >
 	- [ ] <=
 	- [ ] >=
+- [ ] Overload operators
+	- [ ] arithmetic
+	- [ ] Assignment
+	- [ ] Comparison
+	- [ ] Logical
