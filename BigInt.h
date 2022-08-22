@@ -23,6 +23,19 @@ private:
 
 public:
 	BigInt operator+(BigInt& value) { return add(value); }
+	BigInt operator-(BigInt& value) { return substract(value); }
+	BigInt operator*(BigInt& value) { return multiply(value); }
+	BigInt operator/(BigInt& value) { return divide(value); }
+	BigInt operator%(BigInt& value) { return mod(value); }
+
+	BigInt operator++() {
+		BigInt ONE = BigInt::ONE();
+		return add(ONE); 
+	}
+	BigInt operator--() {
+		BigInt ONE = BigInt::ONE();
+		return substract(ONE);
+	}
 
 	friend std::ostream& operator<<(std::ostream& output, const BigInt& number) {
 		output << number.val;
@@ -57,7 +70,10 @@ public:
 		if (isPositive() && number.isNegative()) { return substract(number); }
 
 		// -A + B => B - A
-		else if (isNegative() && number.isPositive()) { return number.substract(*this->abs()); }
+		else if (isNegative() && number.isPositive()) { 
+			BigInt tmp = this->abs();
+			return number.substract(tmp); 
+		}
 
 		// -A + -B => - (A + B)
 		else if (isNegative() && number.isNegative()) {
@@ -90,6 +106,7 @@ public:
 				subres = a + tmp;
 			}
 
+			// reserve a bit
 			if (subres < 9 && i > 0) {
 				tmp = std::to_string(subres)[0] - '0';
 				subres = std::to_string(subres)[1] - '0';
@@ -101,6 +118,30 @@ public:
 			counter++;
 		}
 
+	}
+
+	BigInt substract(BigInt& number) {
+		return "-1";
+	}
+
+	BigInt divide(BigInt& number) {
+		return "-1";
+	}
+
+	BigInt multiply(BigInt& number) {
+		return "-1";
+	}
+
+	BigInt mod(BigInt& mod) {
+		return "-1";
+	}
+
+	BigInt modPow(BigInt& exp, BigInt& mod) {
+		return "-1";
+	}
+
+	BigInt pow(int exp) {
+		return "-1";
 	}
 
 	BigInt abs() {
@@ -126,6 +167,9 @@ public:
 	void setVal(std::string new_value) {
 		val = new_value;
 	}
+
+	static BigInt ONE() { return BigInt(1); }
+	static BigInt ZERO() { return BigInt(0); }
 
 private:
 	std::string validate(std::string value) {
